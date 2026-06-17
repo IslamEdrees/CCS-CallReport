@@ -2,9 +2,11 @@
 
 echo "Installing CCS Call Report"
 
-mysql -u root -p aheevaccs < ../sql/create_database.sql
+DBNAME="your_database"
 
-mysql -u root -p aheevaccs < ../sql/views.sql
+mysql -u root -p $DBNAME < ../sql/create_database.sql
+
+mysql -u root -p $DBNAME < ../sql/views.sql
 
 mkdir -p /var/www/html/callreport
 
