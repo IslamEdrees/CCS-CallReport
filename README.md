@@ -1,7 +1,7 @@
 # CCS-CallReport
 
 <p align="center">
-  <img src="docs/images/banner.png" width="100%">
+  <img src="Doc/images/banner.png" width="100%">
 </p>
 
 <h1 align="center">CCS-CallReport</h1>
@@ -30,7 +30,7 @@ The system captures dialing attempts directly from the Asterisk dialplan and sto
 
 ## Dashboard Preview
 
-![Dashboard](docs/images/Repo1.png)
+![Dashboard](Doc/images/Repo1.png)
 
 ---
 
@@ -51,7 +51,7 @@ The system captures dialing attempts directly from the Asterisk dialplan and sto
 
 ## Agent Statistics
 
-![Agent Statistics](docs/images/Repo2.png)
+![Agent Statistics](Doc/images/Repo2.png)
 
 The dashboard provides per-agent statistics including:
 
@@ -65,7 +65,7 @@ The dashboard provides per-agent statistics including:
 
 ## GOIP Statistics
 
-![GOIP Statistics](docs/images/Repo3.png)
+![GOIP Statistics](Doc/images/Repo3.png)
 
 The dashboard provides per-GOIP metrics including:
 
@@ -279,6 +279,6 @@ https://github.com/IslamEdrees
 
 ---
 
-## License
+
 
 MIT License
