@@ -1,19 +1,36 @@
 # CCS-CallReport
 
-CCS Call Report Call Center
+<p align="center">
+  <img src="docs/images/banner.png" width="100%">
+</p>
+
+<h1 align="center">CCS-CallReport</h1>
+
+<p align="center">
+Call Center Reporting & Analytics Solution
+<br>
+Asterisk | GOIP | MySQL | PHP
+</p>
 
 ---
 
 ## Overview
 
-CCS-CallReport is a lightweight reporting solution designed for:
+CCS-CallReport is a lightweight reporting solution designed for outbound call tracking and operational analytics.
 
-* Asterisk
-* GOIP Gateways
-* PHP 5.3
-* MySQL
+The system captures dialing attempts directly from the Asterisk dialplan and stores them inside MySQL, allowing supervisors and engineers to monitor:
 
-The system captures outbound dialing attempts directly from the Asterisk dialplan and stores them in MySQL for reporting and analytics.
+* Agent activity
+* GOIP utilization
+* Dial status distribution
+* Daily outbound performance
+* Call attempt history
+
+---
+
+## Dashboard Preview
+
+![Dashboard](docs/images/Repo1.png)
 
 ---
 
@@ -22,12 +39,63 @@ The system captures outbound dialing attempts directly from the Asterisk dialpla
 * Agent Statistics
 * GOIP Statistics
 * Dial Status Summary
+* Daily Reporting
+* Call Attempt Tracking
 * CSV Export
 * Web Dashboard
-* Daily Reporting
 * Prefix 98 Support
 * Prefix 30 Support
 * Prefix 97 Support
+
+---
+
+## Agent Statistics
+
+![Agent Statistics](docs/images/Repo2.png)
+
+The dashboard provides per-agent statistics including:
+
+* Total Calls
+* Busy Calls
+* No Answer Calls
+* Congestion Events
+* Unavailable Calls
+
+---
+
+## GOIP Statistics
+
+![GOIP Statistics](docs/images/Repo3.png)
+
+The dashboard provides per-GOIP metrics including:
+
+* Total Calls
+* Busy Calls
+* No Answer Calls
+* Congestion Calls
+* Channel Availability
+
+---
+
+## System Architecture
+
+```text
+Agent
+  |
+  v
+Asterisk Dialplan
+  |
+  v
+Call Attempts Table
+  |
+  +--> Agent Statistics
+  |
+  +--> GOIP Statistics
+  |
+  +--> Status Summary
+  |
+  +--> CSV Export
+```
 
 ---
 
@@ -36,16 +104,16 @@ The system captures outbound dialing attempts directly from the Asterisk dialpla
 ```text
 CCS-CallReport
 ├── docs
+│   └── images
 ├── sql
 ├── web
-├── dialplan
 ├── install
-└── backup
+└── README.md
 ```
 
 ---
 
-## Prerequisites
+## Requirements
 
 * CentOS 6
 * Apache
@@ -57,19 +125,19 @@ CCS-CallReport
 
 ## Installation
 
-### 1. Create Database Objects
+### Create Database Objects
 
 ```bash
-mysql -u root -p password < sql/create_database.sql
+mysql -u root -p your_database < sql/create_database.sql
 ```
 
-### 2. Create Views
+### Create Views
 
 ```bash
-mysql -u root -p Password < sql/views.sql
+mysql -u root -p your_database < sql/views.sql
 ```
 
-### 3. Copy Web Files
+### Copy Web Files
 
 ```bash
 mkdir -p /var/www/html/callreport
@@ -82,41 +150,36 @@ chown -R apache:apache /var/www/html/callreport
 chmod -R 755 /var/www/html/callreport
 ```
 
-### 4. Update Dialplan
+### Configure Database Credentials
 
-Copy required dialplan sections from:
+Edit:
 
 ```text
-dialplan/extensions.conf
+web/config.php
 ```
 
-into:
+Update:
+
+```php
+$DB_HOST="localhost";
+$DB_USER="your_db_user";
+$DB_PASS="your_db_password";
+$DB_NAME="your_database";
+```
+
+### Update Dialplan
+
+Copy the required dialplan logic into:
 
 ```text
 /etc/asterisk/extensions.conf
 ```
 
----
-
-### 5. Reload Dialplan
+Reload:
 
 ```bash
 asterisk -rx "dialplan reload"
 ```
-
----
-
-### 6. Test Calls
-
-Generate test calls using:
-
-```text
-98XXXXXXX
-30XXXXXXX
-97XXXXXXX
-```
-
-Verify records are inserted into MySQL.
 
 ---
 
@@ -148,9 +211,19 @@ SELECT * FROM vw_goip_summary_today;
 
 ---
 
+## Supported Dial Prefixes
+
+| Prefix | Description |
+| ------ | ----------- |
+| 98     | GOIP Pool A |
+| 30     | GOIP Pool B |
+| 97     | GOIP16      |
+
+---
+
 ## Database Objects
 
-### Table
+### Tables
 
 ```text
 call_attempts
@@ -167,19 +240,17 @@ vw_status_summary_today
 
 ---
 
-## Supported Dial Prefixes
+## Use Cases
 
-| Prefix | Description |
-| ------ | ----------- |
-| 98     | GOIP Pool A |
-| 30     | GOIP Pool B |
-| 97     | GOIP16      |
+* Outbound Call Centers
+* GOIP Deployments
+* Telecom Monitoring
+* Operational Reporting
+* Asterisk Analytics
 
 ---
 
 ## Version
-
-Current Release:
 
 ```text
 v1.0 Production
@@ -189,8 +260,25 @@ v1.0 Production
 
 ## Author
 
-Islam Edrees
+### Islam Edrees
 
 VoIP Engineer
-Asterisk / GOIP Solutions
 
+Specialized in:
+
+* Asterisk
+* SIP
+* GOIP
+* Call Center Platforms
+* Linux Administration
+* Monitoring & Reporting
+
+GitHub:
+
+https://github.com/IslamEdrees
+
+---
+
+## License
+
+MIT License
