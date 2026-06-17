@@ -1,0 +1,15 @@
+*.log
+*.csv
+*.gz
+*.tar.gz
+
+backup/*.bak
+backup/*.old
+
+tmp/
+.cache/
+
+*.swp
+*.swo
+
+.DS_Store
